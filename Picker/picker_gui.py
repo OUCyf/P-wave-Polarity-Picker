@@ -265,7 +265,7 @@ class GraphView:
 
     def save_picks(self, filename, AZM_all, TKO_all):
         with open(filename, 'w') as f:
-            f.write("Trace\tNetwork_Station_Channel\tPolarity\tAzimuth\tTakeoff\n")
+            f.write("Trace_Num\tArrive_Time\tNetwork_Station_Channel\tPolarity\tAzimuth\tTakeoff\n")
             for marker in self.markers:
                 pos = marker.get_data()
                 x = pos[0][0]
@@ -280,7 +280,7 @@ class GraphView:
                 name = self.info[int(y)]
                 azm = AZM_all[int(y)]
                 tko = TKO_all[int(y)]
-                f.write(f"{round(y):d}\t{name:s}\t{polarity}\t{azm:.2f}\t{tko:.2f}\n")
+                f.write(f"{round(y):d}\t{x:f}\t{name:s}\t{polarity}\t{azm:.2f}\t{tko:.2f}\n")
         messagebox.showinfo("Save Successfully", f"The data is saved into '{filename}'")
 
 
