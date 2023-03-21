@@ -277,9 +277,9 @@ class GraphView:
                     polarity = '-'
                 else:
                     raise ValueError("Unknown color")
-                name = self.info[int(y)]
-                azm = AZM_all[int(y)]
-                tko = TKO_all[int(y)]
+                name = self.info[round(y)]
+                azm = AZM_all[round(y)]
+                tko = TKO_all[round(y)]
                 f.write(f"{round(y):d}\t{x:f}\t{name:s}\t{polarity}\t{azm:.2f}\t{tko:.2f}\n")
         messagebox.showinfo("Save Successfully", f"The data is saved into '{filename}'")
 
@@ -352,7 +352,7 @@ class MainWindow:
         
         self.tr = obspy.read(file_paths[0])
         if len(file_paths) > 1:
-            for i in range(0, len(file_paths)):
+            for i in range(1, len(file_paths)):
                 self.tr += obspy.read(file_paths[i])
 
         self.graph_view.plot_waveform(self.tr)
